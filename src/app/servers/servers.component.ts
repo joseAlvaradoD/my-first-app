@@ -9,14 +9,20 @@ import { Component } from '@angular/core';
 })
 export class ServersComponent {
   allowNewServer:boolean = false;
-  serverName: string = "Initial server name";
+  serverName: string = "";
   username: string;
+  serverCreated:boolean = false;
+  servers:Array<string> = ['Server01', 'Server02'];
+
   constructor(){
+    this.servers.push('Server03');
     setTimeout(()=>{this.allowNewServer = true}, 2000);
   }
 
-  onCreateServer():void{
-    alert('Server was created! Name is ' + this.serverName);
+  onCreateServer(event: Event):void{
+    this.servers.push(this.serverName);
+    this.serverCreated = true;
+
   }
 
   onUpdateServerName(event: Event):void{
